@@ -37,12 +37,14 @@ cc.Class({
         if(this.isTouchedGround){
             this.rigidBody.active = false
             this.rigidBody.linearVelocity = cc.Vec2.ZERO;
+            console.log(this)
+            //this.rigidBody.restitution = 0.2;
 
             let pathPos = [];
             pathPos.push(this.node.position);
-            pathPos.push(cc.v2(725, 170))
-            pathPos.push(cc.v2(725, 1295))
-            pathPos.push(cc.v2(503, 1230))
+            pathPos.push(cc.v2(349, -498))
+            pathPos.push(cc.v2(338, 608))
+            pathPos.push(cc.v2(162, 557))
 
             this.node.runAction(cc.sequence(
                 cc.cardinalSplineTo(2, pathPos, 0.9),

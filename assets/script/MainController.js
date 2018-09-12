@@ -26,7 +26,6 @@ cc.Class({
     },
 
     shootBall (ball,dir){
-        console.log(dir)
         ball.rigidBody.active = false;
         let pathPos = [];
         pathPos.push(ball.node.position);
@@ -36,14 +35,15 @@ cc.Class({
             cc.cardinalSplineTo(0.8,pathPos,0.5),
             cc.callFunc(function(){
                 ball.rigidBody.active = true;
-                //ball.rigidBody.linearVelocity = cc.v2().mul(dir, 3)
+                //ball.rigidBody.restitution = 1;
+                ball.rigidBody.linearVelocity = dir.mul(3);
             })
         ))
     },
 
     onTouchStart(touch){
         let touchPos = this.node.convertTouchToNodeSpaceAR(touch.touch);
-        this.shootBall(this.balls[0], cc.v2().sub(touchPos,cc.v2(0,440)));
+        this.shootBall(this.balls[0], touchPos.sub(cc.v2(0,440)));
     },
 
     addBarriers () {
