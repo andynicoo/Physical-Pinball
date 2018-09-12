@@ -10,7 +10,7 @@ cc.Class({
 
         score:{
             default: 100,
-            type: Number
+            type: cc.Integer
         }
        
     },
@@ -19,7 +19,6 @@ cc.Class({
         
         this.setScore(this.score);
         
-        this.lbScore.node.rotation = -this.node.rotation
     },
 
     setScore(score){
@@ -28,7 +27,7 @@ cc.Class({
     },
 
     start () {
-        
+        this.lbScore.node.rotation = -this.node.rotation
     },
 
     onBeginContact(contact, selfCollider,otherCollider){

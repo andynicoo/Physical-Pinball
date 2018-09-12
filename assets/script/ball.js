@@ -18,7 +18,7 @@ cc.Class({
         },
 
         isTouchedGround : {
-            type: Boolean,
+            type: cc.Boolean,
             default: false
         }
     },
