@@ -1,37 +1,50 @@
-cc.Class({
+var Barrier = cc.Class({
     extends: cc.Component,
 
-    properties: {
-
+    properties:() => ({
         lbScore: {
             default: null,
             type: cc.Label
         },
-
-        score:{
-            default: 100,
-            type: cc.Integer
-        }
-       
-    },
+        isAddBuffBall:{
+            default: false,
+            type: cc.Boolean
+        },
+        main: require("./MainController")
+    }),
 
     onLoad () {
-        
+        this.score = 10;
         this.setScore(this.score);
         
     },
 
-    setScore(score){
-        this.score = score;
-        this.lbScore.string = this.score.toString()
+    start () {
+        if(this.lbScore){
+            this.lbScore.node.rotation = -this.node.rotation
+        }
     },
 
-    start () {
-        this.lbScore.node.rotation = -this.node.rotation
+    setScore(score){
+        if(this.lbScore){
+            this.score = score;
+            this.lbScore.string = this.score.toString();
+        }
     },
 
     onBeginContact(contact, selfCollider,otherCollider){
-        this.setScore(this.score - 1)
+        if(this.isAddBuffBall){
+            this.main.addBall(this.node.position);
+            this.main.removeBarrier(this);
+        }else{
+            this.main.addScore();
+            if(this.score == 0){
+                this.main.removeBarrier(this);
+            }else{
+                this.setScore(this.score - 1);
+            }
+            
+        }
     },
 
     onPreSolve(contact, selfCollider,otherCollider){
@@ -49,3 +62,5 @@ cc.Class({
 
     // update (dt) {},
 });
+
+module.exports = Barrier;
