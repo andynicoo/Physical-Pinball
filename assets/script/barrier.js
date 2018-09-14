@@ -38,7 +38,7 @@ var Barrier = cc.Class({
             this.main.removeBarrier(this);
         }else{
             this.main.addScore();
-            if(this.score == 0){
+            if(this.score == 1){
                 this.main.removeBarrier(this);
             }else{
                 this.setScore(this.score - 1);

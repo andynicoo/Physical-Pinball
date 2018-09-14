@@ -1,5 +1,6 @@
 var Ball = require("./Ball");
 var Barrier = require("./Barrier");
+var Config = require("./Config");
 
 var MainController = cc.Class({
     extends: cc.Component,
@@ -23,21 +24,31 @@ var MainController = cc.Class({
 
     onLoad () {
         this.score = 0;
+        this.recycleBallsCount = 1;
         this.addBarriers();
 
         this.node.on(cc.Node.EventType.TOUCH_START,this.onTouchStart,this);
 
         this.addScore(this.score);
+
+        this.balls[0].main = this;
+        this.balls[0].node.group = Config.groupBallInRecycle;
     },
 
     addBall(pos){
         let ball = cc.instantiate(this.prefabBall).getComponent(Ball);
         ball.node.parent = this.node;
         ball.node.position = pos;
+        ball.main = this;
+        ball.node.group = Config.groupBallInGame;
         this.balls.push(ball);
     },
 
     onTouchStart(touch){
+        if(!this.isRecycleFinished()){
+            return;
+        }
+        this.recycleBallsCount = 0;
         let touchPos = this.node.convertTouchToNodeSpaceAR(touch.touch);
         this.shootBalls(touchPos.sub(cc.v2(0,420)));
     },
@@ -56,7 +67,7 @@ var MainController = cc.Class({
         let pathPos = [];
         pathPos.push(ball.node.position);
         pathPos.push(cc.v2(0,420));
-
+        ball.node.group = Config.groupBallInGame;
         ball.node.runAction(cc.sequence(
             cc.cardinalSplineTo(0.8,pathPos,0.5),
             cc.callFunc(function(){
@@ -67,17 +78,35 @@ var MainController = cc.Class({
         ))
     },
 
-    addBarriers () {
-        let startPosX = -248;
-        let endPosX = 208;
+    recycleBall(){
+        this.recycleBallsCount++;
 
-        let currentPosX = startPosX + this.getRandomSpace();
+        if(this.isRecycleFinished()){
+            for(let i = 0; i < this.barriers.length; i++){
+                let barrier = this.barriers[i];
+                barrier.node.runAction(cc.moveBy(0.5,cc.v2(0,100)))
+            }
+            this.addBarriers();
+        }
+    },
+
+    isRecycleFinished(){
+        return this.recycleBallsCount == this.balls.length;
+    },
+
+    addBarriers () {
+        let startPosX = -280;
+        let endPosX = 280;
+
+        let currentPosX = startPosX + this.getRandomSpace() - 60;
 
         while(currentPosX < endPosX){
             let barrier = cc.instantiate(this.prefabBarriers[Math.floor(Math.random() * this.prefabBarriers.length)]).getComponent(Barrier)
             barrier.node.parent = this.node;
-            barrier.node.position = cc.v2(currentPosX,-410);
-            barrier.node.rotation = Math.random() * 360;
+            barrier.node.position = cc.v2(currentPosX,-410 + this.randomNum(-20,20));
+            if(barrier.lbScore){
+                barrier.node.rotation = Math.random() * 360;
+            }
             barrier.main = this;
             currentPosX += this.getRandomSpace();
             this.barriers.push(barrier);
@@ -85,7 +114,7 @@ var MainController = cc.Class({
     },
 
     addScore(){
-        this.lbScoreCount.string = this.score++;
+        this.lbScoreCount.string = '分数：' + this.score++;
     },
 
     removeBarrier(barrier){
@@ -97,7 +126,14 @@ var MainController = cc.Class({
     },
 
     getRandomSpace(){
-        return 100 + Math.random() * 100
+        return 60 + Math.random() * 100
+    },
+
+    randomNum(Min, Max) {
+        var Range = Max - Min;
+        var Rand = Math.random();
+        var num = Min + Math.floor(Rand * Range);
+        return num;
     },
 
     update (dt) {},

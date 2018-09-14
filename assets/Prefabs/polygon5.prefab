@@ -65,8 +65,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.7,
+      "y": 0.7,
       "z": 1
     },
     "_rotationX": 0,
@@ -170,7 +170,7 @@
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
     "_N$overflow": 0,
-    "_id": "bfUN5tDItLPLD8wlvt8j+p"
+    "_id": "49gNBTXo1D7r4ZFapb932g"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -209,7 +209,7 @@
     "_isTrimmedMode": true,
     "_state": 0,
     "_atlas": null,
-    "_id": "6f/ipMJrBCkqGiZagmoX1u"
+    "_id": "0feQd3wP5HJL9RjP3mf7H9"
   },
   {
     "__type__": "cc.RigidBody",
@@ -233,7 +233,7 @@
     "_fixedRotation": false,
     "enabledContactListener": true,
     "bullet": false,
-    "_id": "14SXClnxRMuLqgJSZn8LjH"
+    "_id": "709bThRLZLw73OZWfLQsm+"
   },
   {
     "__type__": "cc.PhysicsPolygonCollider",
@@ -281,7 +281,7 @@
         "y": 10.5
       }
     ],
-    "_id": "2bDAic0bVP8a40gYb80AdD"
+    "_id": "daxUtkQF1LYoknKP7txb8F"
   },
   {
     "__type__": "60c62mT6OhALLjJRsK7kVMV",
@@ -294,10 +294,9 @@
     "lbScore": {
       "__id__": 3
     },
-    "score": 10,
     "isAddBuffBall": false,
     "main": null,
-    "_id": "cffv+pRflH/6aG3kIx7eXq"
+    "_id": "632uYxAqtI/aGa4nUq4KLz"
   },
   {
     "__type__": "cc.PrefabInfo",

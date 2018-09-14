@@ -1,7 +1,9 @@
+var Config = require("./Config");
+
 var Ball = cc.Class({
     extends: cc.Component,
 
-    properties: {
+    properties: () => ({
         rigidBody: {
             type: cc.RigidBody,
             default: null
@@ -10,8 +12,10 @@ var Ball = cc.Class({
         isTouchedGround : {
             type: cc.Boolean,
             default: false
-        }
-    },
+        },
+        
+        main: require("./MainController")
+    }),
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -40,6 +44,8 @@ var Ball = cc.Class({
                 cc.cardinalSplineTo(2, pathPos, 0.9),
                 cc.callFunc(function(){
                     this.rigidBody.active = true;
+                    this.node.group = Config.groupBallInRecycle;
+                    this.main.recycleBall();
                 }.bind(this))
             ))
             this.isTouchedGround = false;
