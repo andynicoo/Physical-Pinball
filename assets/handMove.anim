@@ -1,0 +1,82 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "handMove",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 2.6666666666666665,
+  "sample": 30,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "paths": {
+      "line": {
+        "props": {
+          "rotation": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 0.6666666666666666,
+              "value": 25
+            },
+            {
+              "frame": 1.3333333333333333,
+              "value": 0
+            },
+            {
+              "frame": 2,
+              "value": -25
+            },
+            {
+              "frame": 2.6666666666666665,
+              "value": 0
+            }
+          ]
+        }
+      },
+      "hand": {
+        "props": {
+          "position": [
+            {
+              "frame": 0,
+              "value": [
+                0,
+                -175
+              ]
+            },
+            {
+              "frame": 0.6666666666666666,
+              "value": [
+                -202,
+                -122
+              ]
+            },
+            {
+              "frame": 1.3333333333333333,
+              "value": [
+                0,
+                -175
+              ]
+            },
+            {
+              "frame": 2,
+              "value": [
+                217,
+                -124
+              ]
+            },
+            {
+              "frame": 2.6666666666666665,
+              "value": [
+                0,
+                -175
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "events": []
+}

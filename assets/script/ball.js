@@ -41,7 +41,7 @@ var Ball = cc.Class({
             pathPos.push(cc.v2(162, 557))
 
             this.node.runAction(cc.sequence(
-                cc.cardinalSplineTo(2, pathPos, 0.9),
+                cc.cardinalSplineTo(1, pathPos, 0.9),
                 cc.callFunc(function(){
                     this.rigidBody.active = true;
                     this.node.group = Config.groupBallInRecycle;

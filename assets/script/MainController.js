@@ -20,7 +20,11 @@ var MainController = cc.Class({
             default: []
         },
         lbScoreCount: cc.Label,
-        arraw: cc.Sprite
+        arraw: cc.Sprite,
+        handMove:{
+            type: cc.Node,
+            default: null
+        }
     }),
 
     onLoad () {
@@ -38,6 +42,8 @@ var MainController = cc.Class({
 
         this.balls[0].main = this;
         this.balls[0].node.group = Config.groupBallInRecycle;
+
+        cc.hide(this.handMove.node)
     },
 
     onTouchMove(touch){
@@ -55,7 +61,8 @@ var MainController = cc.Class({
         let increment = line.normalize().mul(length); //根据每条线段的长度获得一个增量向量
         let pos = origin.clone(); //临时变量
 
-        graphics.fillColor = cc.color(255,255,255);
+        graphics.fillColor = cc.color(255,255,255,150);
+        pos.addSelf(increment);
         pos.addSelf(increment);
         graphics.clear();
 
