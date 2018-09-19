@@ -12,22 +12,16 @@ var Ball = cc.Class({
         isTouchedGround : {
             type: cc.Boolean,
             default: false
-        },
-        
-        main: require("./MainController")
+        }
     }),
-
-    // LIFE-CYCLE CALLBACKS:
-
+    
+    //加载完成
     onLoad () {
         this.rigidBody = this.getComponent(cc.RigidBody);
         this.collider = this.getComponent(cc.Collider);
     },
 
-    start () {
-
-    },
-
+    //小球更新
     update (dt) {
         if(this.isTouchedGround){
             this.rigidBody.active = false
@@ -53,6 +47,7 @@ var Ball = cc.Class({
         
     },
 
+    //小球发生碰撞时
     onBeginContact(contact, selfCollider,otherCollider){
         if(otherCollider.node.name == 'ground'){
             this.isTouchedGround = true;

@@ -9,10 +9,10 @@ var Barrier = cc.Class({
         isAddBuffBall:{
             default: false,
             type: cc.Boolean
-        },
-        main: require("./MainController")
+        }
     }),
 
+    //加载完成
     onLoad () {
         this.score = 10;
         this.setScore(this.score);
@@ -25,6 +25,7 @@ var Barrier = cc.Class({
         }
     },
 
+    //
     setScore(score){
         if(this.lbScore){
             this.score = score;

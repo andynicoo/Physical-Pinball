@@ -1,6 +1,7 @@
 var Game = cc.Class({
     extends: cc.Component,
 
+    //加载完成，启用物理系统
     onLoad () {
         cc.director.getPhysicsManager().enabled = true;
         //cc.director.getPhysicsManager().debugDrawFlags = true;
@@ -11,11 +12,7 @@ var Game = cc.Class({
         // cc.PhysicsManager.DrawBits.e_centerOfMassBit |
         // cc.PhysicsManager.DrawBits.e_jointBit |
         // cc.PhysicsManager.DrawBits.e_shapeBit;
-    },
-
-    start () {
-
-    },
+    }
 });
 
 module.exports = Game;

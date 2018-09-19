@@ -1,6 +1,7 @@
 var Ball = require("./Ball");
 var Barrier = require("./Barrier");
 var Config = require("./Config");
+var Shake = require("./Shake");
 
 var MainController = cc.Class({
     extends: cc.Component,
@@ -21,18 +22,19 @@ var MainController = cc.Class({
         },
         lbScoreCount: cc.Label,
         arraw: cc.Sprite,
-        handMove:{
+        obstacle:{
             type: cc.Node,
             default: null
         }
     }),
 
+    //加载完成
     onLoad () {
         this.score = 0;
         this.recycleBallsCount = 1;
         this.addBarriers();
 
-        //this.node.on(cc.Node.EventType.TOUCH_START,this.onTouchStart,this);
+        this.node.on(cc.Node.EventType.TOUCH_START,this.onTouchStart,this);
 
         this.node.on(cc.Node.EventType.TOUCH_END,this.onTouchEnd,this);
 
@@ -43,9 +45,22 @@ var MainController = cc.Class({
         this.balls[0].main = this;
         this.balls[0].node.group = Config.groupBallInRecycle;
 
-        cc.hide(this.handMove.node)
+        this.guideShow();
+
+        
+        //let shakeObj = new Shake();
+        let shake = cc.shake(1,5,5);
+        console.log(shake)
+        // let shake = Shake.create(1,5,5);
+        this.lbScoreCount.node.runAction(shake);
     },
 
+    //触摸开始时
+    onTouchStart(){
+        this.guideHide();
+    },
+
+    //触摸移动
     onTouchMove(touch){
         let origin = cc.v2(0, 446);
         let touchPos = this.node.convertTouchToNodeSpaceAR(touch.touch);
@@ -80,15 +95,7 @@ var MainController = cc.Class({
 
     },
 
-    addBall(pos){
-        let ball = cc.instantiate(this.prefabBall).getComponent(Ball);
-        ball.node.parent = this.node;
-        ball.node.position = pos;
-        ball.main = this;
-        ball.node.group = Config.groupBallInGame;
-        this.balls.push(ball);
-    },
-
+    //触摸结束
     onTouchEnd(touch){
         if(!this.isRecycleFinished()){
             return;
@@ -100,6 +107,17 @@ var MainController = cc.Class({
         this.shootBalls(touchPos.sub(cc.v2(0,420)));
     },
 
+    //新增小球
+    addBall(pos){
+        let ball = cc.instantiate(this.prefabBall).getComponent(Ball);
+        ball.node.parent = this.node;
+        ball.node.position = pos;
+        ball.main = this;
+        ball.node.group = Config.groupBallInGame;
+        this.balls.push(ball);
+    },
+
+    //连续发射小球
     shootBalls(dir){
         for(let i = 0; i < this.balls.length; i++){
             let ball = this.balls[i];
@@ -109,6 +127,7 @@ var MainController = cc.Class({
         }
     },
 
+    //发射单个小球
     shootBall (ball,dir){
         ball.rigidBody.active = false;
         let pathPos = [];
@@ -125,6 +144,7 @@ var MainController = cc.Class({
         ))
     },
 
+    //收回小球
     recycleBall(){
         this.recycleBallsCount++;
 
@@ -136,11 +156,13 @@ var MainController = cc.Class({
             this.addBarriers();
         }
     },
-
+    
+    //小球是否收回完毕
     isRecycleFinished(){
         return this.recycleBallsCount == this.balls.length;
     },
 
+    //添加障碍物
     addBarriers () {
         let startPosX = -280;
         let endPosX = 280;
@@ -159,11 +181,13 @@ var MainController = cc.Class({
             this.barriers.push(barrier);
         }   
     },
-
+    
+    //计分显示
     addScore(){
         this.lbScoreCount.string = '分数：' + this.score++;
     },
 
+    //
     removeBarrier(barrier){
         let idx = this.barriers.indexOf(barrier);
         if(idx != -1){
@@ -172,10 +196,12 @@ var MainController = cc.Class({
         }
     },
 
+    //获取随机距离
     getRandomSpace(){
-        return 60 + Math.random() * 100
+        return 60 + Math.random() * 100;
     },
 
+    //获取区间随机值
     randomNum(Min, Max) {
         var Range = Max - Min;
         var Rand = Math.random();
@@ -183,7 +209,18 @@ var MainController = cc.Class({
         return num;
     },
 
-    update (dt) {},
+    //显示引导动画
+    guideShow(){
+        this.obstacle.active = true;
+        let handMove = this.obstacle.getChildByName('handMove');
+        let animCtrl = handMove.getComponent(cc.Animation);
+        animCtrl.play('handMove');
+    },
+
+    //关闭引导动画
+    guideHide(){
+        this.obstacle.active = false;
+    }
 });
 
 module.exports = MainController;
