@@ -1,7 +1,7 @@
 var Ball = require("./Ball");
 var Barrier = require("./Barrier");
 var Config = require("./Config");
-var Shake = require("./Shake");
+require("./Shake");
 
 var MainController = cc.Class({
     extends: cc.Component,
@@ -30,29 +30,20 @@ var MainController = cc.Class({
 
     //加载完成
     onLoad () {
-        this.score = 0;
-        this.recycleBallsCount = 1;
-        this.addBarriers();
+        this.score = 0; //计分牌
+        this.recycleBallsCount = 1; //收回小球数
+        this.barrierScoreRate = 0; //设置障碍物基准率
 
         this.node.on(cc.Node.EventType.TOUCH_START,this.onTouchStart,this);
-
         this.node.on(cc.Node.EventType.TOUCH_END,this.onTouchEnd,this);
-
         this.node.on(cc.Node.EventType.TOUCH_MOVE,this.onTouchMove,this);
 
+        this.guideShow();
+        this.addBarriers();
         this.addScore(this.score);
 
         this.balls[0].main = this;
         this.balls[0].node.group = Config.groupBallInRecycle;
-
-        this.guideShow();
-
-        
-        //let shakeObj = new Shake();
-        let shake = cc.shake(1,5,5);
-        console.log(shake)
-        // let shake = Shake.create(1,5,5);
-        this.lbScoreCount.node.runAction(shake);
     },
 
     //触摸开始时
@@ -60,9 +51,9 @@ var MainController = cc.Class({
         this.guideHide();
     },
 
-    //触摸移动
+    //触摸移动操作，射线瞄准
     onTouchMove(touch){
-        let origin = cc.v2(0, 446);
+        let origin = cc.v2(0, 446);  //射线原点坐标
         let touchPos = this.node.convertTouchToNodeSpaceAR(touch.touch);
 
         if(touchPos.y > origin.y){
@@ -144,14 +135,24 @@ var MainController = cc.Class({
         ))
     },
 
-    //收回小球
+    //收回小球，上移一排障碍物
     recycleBall(){
         this.recycleBallsCount++;
-
+        this.barrierScoreRate += 0.1;
         if(this.isRecycleFinished()){
             for(let i = 0; i < this.barriers.length; i++){
                 let barrier = this.barriers[i];
-                barrier.node.runAction(cc.moveBy(0.5,cc.v2(0,100)))
+                barrier.node.runAction(cc.sequence(
+                    cc.moveBy(0.5,cc.v2(0,100)),
+                    cc.callFunc(function(){
+                        if(barrier.node.position.y > 220){
+                            barrier.node.runAction(cc.shake(1.5,3,3));
+                        }
+                        if(barrier.node.position.y > 320){
+                            this.gameOver();
+                        }
+                    }.bind(this))
+                ))
             }
             this.addBarriers();
         }
@@ -167,10 +168,10 @@ var MainController = cc.Class({
         let startPosX = -280;
         let endPosX = 280;
 
-        let currentPosX = startPosX + this.getRandomSpace() - 60;
+        let currentPosX = startPosX + this.getRandomSpace() - 80;
 
         while(currentPosX < endPosX){
-            let barrier = cc.instantiate(this.prefabBarriers[Math.floor(Math.random() * this.prefabBarriers.length)]).getComponent(Barrier)
+            let barrier = cc.instantiate(this.prefabBarriers[Math.floor(Math.random() * this.prefabBarriers.length)]).getComponent(Barrier);
             barrier.node.parent = this.node;
             barrier.node.position = cc.v2(currentPosX,-410 + this.randomNum(-20,20));
             if(barrier.lbScore){
@@ -181,13 +182,25 @@ var MainController = cc.Class({
             this.barriers.push(barrier);
         }   
     },
+
+    //抖动障碍物
+    shake(barrier){
+        let shake = cc.shake(0.7,1,1);
+        barrier.node.runAction(shake);
+    },
     
-    //计分显示
+    //计分牌显示
     addScore(){
         this.lbScoreCount.string = '分数：' + this.score++;
     },
 
-    //
+    //设置障碍物自身分数值
+    setBarrierScore(){
+        let score = Math.floor(this.randomNum(1 + 10 * this.barrierScoreRate,10 + 10 * this.barrierScoreRate));
+        return score;
+    },
+
+    //消除障碍物
     removeBarrier(barrier){
         let idx = this.barriers.indexOf(barrier);
         if(idx != -1){
@@ -196,9 +209,9 @@ var MainController = cc.Class({
         }
     },
 
-    //获取随机距离
+    //获取随机距离，用于生成障碍物的间距
     getRandomSpace(){
-        return 60 + Math.random() * 100;
+        return 130 + Math.random() * 100;
     },
 
     //获取区间随机值
@@ -220,6 +233,11 @@ var MainController = cc.Class({
     //关闭引导动画
     guideHide(){
         this.obstacle.active = false;
+    },
+
+    //游戏结束
+    gameOver(){
+        console.log('game over');
     }
 });
 

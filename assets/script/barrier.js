@@ -14,8 +14,6 @@ var Barrier = cc.Class({
 
     //加载完成
     onLoad () {
-        this.score = 10;
-        this.setScore(this.score);
         
     },
 
@@ -23,6 +21,7 @@ var Barrier = cc.Class({
         if(this.lbScore){
             this.lbScore.node.rotation = -this.node.rotation
         }
+        this.setScore(this.main.setBarrierScore());
     },
 
     //
@@ -43,6 +42,7 @@ var Barrier = cc.Class({
                 this.main.removeBarrier(this);
             }else{
                 this.setScore(this.score - 1);
+                this.main.shake(this);
             }
             
         }

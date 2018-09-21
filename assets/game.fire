@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 1.5649521811339928,
-      "y": 1.5649521811339928,
+      "x": 250.35234885286022,
+      "y": 250.35234885286022,
       "z": 1
     },
     "_quat": {
@@ -85,14 +85,14 @@
       },
       {
         "__id__": 39
+      },
+      {
+        "__id__": 50
       }
     ],
     "_active": true,
     "_level": 1,
     "_components": [
-      {
-        "__id__": 50
-      },
       {
         "__id__": 51
       },
@@ -101,6 +101,9 @@
       },
       {
         "__id__": 53
+      },
+      {
+        "__id__": 54
       }
     ],
     "_prefab": null,
@@ -482,7 +485,7 @@
     },
     "_enabled": true,
     "tag": 0,
-    "_density": 1,
+    "_density": 0,
     "_sensor": false,
     "_friction": 0,
     "_restitution": 0.5,
@@ -2149,6 +2152,63 @@
     "_id": "4221BCcsZFf742qhnqWpnn"
   },
   {
+    "__type__": "cc.Node",
+    "_name": "New Node",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 2
+    },
+    "_children": [],
+    "_active": true,
+    "_level": 2,
+    "_components": [],
+    "_prefab": null,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 0.37,
+      "y": 332.59,
+      "z": 0
+    },
+    "_scale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_quat": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_zIndex": 0,
+    "groupIndex": 0,
+    "_id": "edf2+631ZJyLuyRE44Zmvp"
+  },
+  {
     "__type__": "cc.Canvas",
     "_name": "",
     "_objFlags": 0,
@@ -2195,6 +2255,9 @@
       },
       {
         "__uuid__": "4b578c1b-af45-473f-a029-c6e6e82bca65"
+      },
+      {
+        "__uuid__": "69a7ce73-122e-4be4-be08-ade7cf125b98"
       }
     ],
     "prefabBall": {
