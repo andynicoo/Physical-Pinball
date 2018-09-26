@@ -172,7 +172,7 @@
     },
     "_fastMode": false,
     "_N$preview": false,
-    "_id": "4fZ+myCvRJ3L/j6ehuWcyh"
+    "_id": "cd+H8uL0lOx4afPy1vkP4j"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -211,7 +211,7 @@
     "_isTrimmedMode": true,
     "_state": 0,
     "_atlas": null,
-    "_id": "c6advkA9BDx6rFqWFWW1HQ"
+    "_id": "03Sa7VSV9E658bmFNv/h8m"
   },
   {
     "__type__": "cc.RigidBody",
@@ -223,7 +223,7 @@
     "_enabled": true,
     "_type": 2,
     "_allowSleep": true,
-    "_gravityScale": 2,
+    "_gravityScale": 3,
     "_linearDamping": 0,
     "_angularDamping": 0,
     "_linearVelocity": {
@@ -235,7 +235,7 @@
     "_fixedRotation": false,
     "enabledContactListener": true,
     "bullet": false,
-    "_id": "849LyqueJFDLevRekxtx0F"
+    "_id": "dcuHOG+QBG1p7b10g7P/Xm"
   },
   {
     "__type__": "1d3eco/MrRNJrBdpHK5Et9m",
@@ -247,7 +247,7 @@
     "_enabled": true,
     "rigidBody": null,
     "isTouchedGround": false,
-    "_id": "e7mIBykmdFppiowvGWW3rM"
+    "_id": "b3vk8a3CZJG45U3veGIA9Y"
   },
   {
     "__type__": "cc.PhysicsCircleCollider",
@@ -261,7 +261,7 @@
     "_density": 0,
     "_sensor": false,
     "_friction": 0,
-    "_restitution": 0.5,
+    "_restitution": 0.7,
     "body": null,
     "_offset": {
       "__type__": "cc.Vec2",
@@ -269,7 +269,7 @@
       "y": 0
     },
     "_radius": 15,
-    "_id": "87l1n/D9JIXrxj/Vr6Z6b7"
+    "_id": "d1QhMyI3ZJJ5spaFTVXH6k"
   },
   {
     "__type__": "cc.PrefabInfo",

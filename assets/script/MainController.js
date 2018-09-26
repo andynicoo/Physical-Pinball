@@ -26,7 +26,8 @@ var MainController = cc.Class({
             type: cc.Node,
             default: null
         },
-        gameStatus: true
+        gameStatus: true,
+        gameOverMark: cc.Node
     }),
 
     //加载完成
@@ -41,10 +42,12 @@ var MainController = cc.Class({
 
         this.guideShow();
         this.addBarriers();
-        this.addScore(this.score);
 
         this.balls[0].main = this;
         this.balls[0].node.group = Config.groupBallInRecycle;
+
+        this.gameOverMark.active = false;
+        this.gameOverMark.zIndex = 10;
     },
 
     //触摸开始时
@@ -169,10 +172,10 @@ var MainController = cc.Class({
 
     //添加障碍物
     addBarriers () {
-        let startPosX = -280;
-        let endPosX = 280;
+        let startPosX = -270;
+        let endPosX = 270;
 
-        let currentPosX = startPosX + this.getRandomSpace() - 80;
+        let currentPosX = startPosX + this.getRandomSpace();
 
         while(currentPosX < endPosX){
             let barrier = cc.instantiate(this.prefabBarriers[Math.floor(Math.random() * this.prefabBarriers.length)]).getComponent(Barrier);
@@ -195,12 +198,13 @@ var MainController = cc.Class({
     
     //计分牌显示
     addScore(){
-        this.lbScoreCount.string = '分数：' + this.score++;
+        this.score++;
+        this.lbScoreCount.string = '分数：' + this.score.toString();
     },
 
     //设置障碍物自身分数值
     setBarrierScore(){
-        let score = Math.floor(this.randomNum(1 + 10 * this.barrierScoreRate,10 + 10 * this.barrierScoreRate));
+        let score = Math.floor(this.randomNum(1 + 5 * this.barrierScoreRate,5 + 5 * this.barrierScoreRate));
         return score;
     },
 
@@ -215,7 +219,7 @@ var MainController = cc.Class({
 
     //获取随机距离，用于生成障碍物的间距
     getRandomSpace(){
-        return 130 + Math.random() * 100;
+        return 80 + Math.random() * 200;
     },
 
     //获取区间随机值
@@ -242,6 +246,13 @@ var MainController = cc.Class({
     //游戏结束
     gameOver(){
         this.gameStatus = false;
+        this.gameOverMark.active = true;
+        this.gameOverMark.getChildByName("score").getComponent(cc.Label).string = "得分：" + this.score.toString();
+    },
+
+    //重新开始游戏
+    restart(){
+        console.log("restart")
     }
 });
 

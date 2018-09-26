@@ -3,7 +3,8 @@ cc.Class({
 
     properties: {
         progressBar :null,
-        loadingLabel: cc.Label
+        loadingLabel: cc.Label,
+        startButton: cc.Button
     },
     
     onLoad () {
@@ -12,6 +13,7 @@ cc.Class({
 
     start () {
         this.progressBar = this.node.getChildByName("progressBar").getComponent(cc.ProgressBar);
+        this.startButton.node.active = false;
     },
 
     onProgress: function(completedCount,totalCount,item){
@@ -21,6 +23,7 @@ cc.Class({
     },
 
     onLoaded:function(){
-        //cc.director.loadScene("game");
+        this.loadingLabel.string = "加载完成（100%）";
+        this.startButton.node.active = true;
     }
 });
