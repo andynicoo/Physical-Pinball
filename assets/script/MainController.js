@@ -5,7 +5,7 @@ require("./Shake");
 
 var MainController = cc.Class({
     extends: cc.Component,
-
+    
     properties:() => ({
         prefabBarriers:{
             type: cc.Prefab,
@@ -25,7 +25,8 @@ var MainController = cc.Class({
         obstacle:{
             type: cc.Node,
             default: null
-        }
+        },
+        gameStatus: true
     }),
 
     //加载完成
@@ -110,6 +111,9 @@ var MainController = cc.Class({
 
     //连续发射小球
     shootBalls(dir){
+        if(!this.gameStatus){
+            return;
+        }
         for(let i = 0; i < this.balls.length; i++){
             let ball = this.balls[i];
             this.scheduleOnce(function(){
@@ -145,10 +149,10 @@ var MainController = cc.Class({
                 barrier.node.runAction(cc.sequence(
                     cc.moveBy(0.5,cc.v2(0,100)),
                     cc.callFunc(function(){
-                        if(barrier.node.position.y > 220){
+                        if(barrier.node.position.y > 200){
                             barrier.node.runAction(cc.shake(1.5,3,3));
                         }
-                        if(barrier.node.position.y > 320){
+                        if(barrier.node.position.y > 300){
                             this.gameOver();
                         }
                     }.bind(this))
@@ -237,7 +241,7 @@ var MainController = cc.Class({
 
     //游戏结束
     gameOver(){
-        console.log('game over');
+        this.gameStatus = false;
     }
 });
 
