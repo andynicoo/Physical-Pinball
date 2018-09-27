@@ -22,6 +22,8 @@ var Barrier = cc.Class({
             this.lbScore.node.rotation = -this.node.rotation
         }
         this.setScore(this.main.setBarrierScore());
+
+        this.node.color = cc.color(255,150,0,255)
     },
 
     //
