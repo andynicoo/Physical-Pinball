@@ -22,8 +22,15 @@ var Barrier = cc.Class({
             this.lbScore.node.rotation = -this.node.rotation
         }
         this.setScore(this.main.setBarrierScore());
+        this.node.color = cc.color(200,this.randomNum(0, 255),this.randomNum(0, 255),255)
 
-        this.node.color = cc.color(255,150,0,255)
+    },
+
+    randomNum(Min, Max) {
+        var Range = Max - Min;
+        var Rand = Math.random();
+        var num = Min + Math.floor(Rand * Range);
+        return num;
     },
 
     //

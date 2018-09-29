@@ -12,6 +12,8 @@ var Game = cc.Class({
         // cc.PhysicsManager.DrawBits.e_centerOfMassBit |
         // cc.PhysicsManager.DrawBits.e_jointBit |
         // cc.PhysicsManager.DrawBits.e_shapeBit;
+
+        //cc.director.setDisplayStats = false;
     }
 });
 

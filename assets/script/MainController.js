@@ -144,7 +144,7 @@ var MainController = cc.Class({
         while(currentPosX < endPosX){
             let barrier = cc.instantiate(this.prefabBarriers[Math.floor(Math.random() * this.prefabBarriers.length)]).getComponent(Barrier);
             barrier.node.parent = this.node;
-            barrier.node.position = cc.v2(currentPosX,-410 + this.randomNum(-20,20));
+            barrier.node.position = cc.v2(currentPosX,-410);
             if(barrier.lbScore){
                 barrier.node.rotation = Math.random() * 360;
             }
@@ -168,7 +168,7 @@ var MainController = cc.Class({
 
     //设置障碍物自身分数值
     setBarrierScore(){
-        let score = Math.floor(this.randomNum(1 + 5 * this.barrierScoreRate,5 + 5 * this.barrierScoreRate));
+        let score = Math.floor(this.randomNum(1 + 2 * this.barrierScoreRate,5 + 3 * this.barrierScoreRate));
         return score;
     },
 
