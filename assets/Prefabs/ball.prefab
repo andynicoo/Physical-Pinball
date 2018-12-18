@@ -24,6 +24,9 @@
     "_level": 1,
     "_components": [
       {
+        "__id__": 4
+      },
+      {
         "__id__": 5
       },
       {
@@ -31,13 +34,10 @@
       },
       {
         "__id__": 7
-      },
-      {
-        "__id__": 8
       }
     ],
     "_prefab": {
-      "__id__": 9
+      "__id__": 8
     },
     "_opacity": 255,
     "_color": {
@@ -94,13 +94,9 @@
     "_children": [],
     "_active": true,
     "_level": 2,
-    "_components": [
-      {
-        "__id__": 3
-      }
-    ],
+    "_components": [],
     "_prefab": {
-      "__id__": 4
+      "__id__": 3
     },
     "_opacity": 255,
     "_color": {
@@ -148,33 +144,6 @@
     "_id": ""
   },
   {
-    "__type__": "cc.MotionStreak",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 2
-    },
-    "_enabled": true,
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_fadeTime": 0.08,
-    "_minSeg": 1,
-    "_stroke": 30,
-    "_texture": {
-      "__uuid__": "07e75fef-c581-4e48-9c13-98a38884fc0c"
-    },
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_fastMode": false,
-    "_N$preview": false,
-    "_id": "37XY+Jwd9Hu7fo0GmgqJ23"
-  },
-  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -211,7 +180,7 @@
     "_isTrimmedMode": true,
     "_state": 0,
     "_atlas": null,
-    "_id": "d97tV3ioJFXazd4xu0ofUQ"
+    "_id": "d5vq4afH5LUbhy085DoWl+"
   },
   {
     "__type__": "cc.RigidBody",
@@ -235,7 +204,7 @@
     "_fixedRotation": false,
     "enabledContactListener": true,
     "bullet": false,
-    "_id": "c70n0iu6xEfLpxxf9swo4F"
+    "_id": "21o2yDLc9BLJKl7GNfAIvD"
   },
   {
     "__type__": "1d3eco/MrRNJrBdpHK5Et9m",
@@ -247,7 +216,7 @@
     "_enabled": true,
     "rigidBody": null,
     "isTouchedGround": false,
-    "_id": "40Hw8+4yhAW43++cFE3Hhe"
+    "_id": "f5DgwzF1BF3JjfBJ7Fp+a0"
   },
   {
     "__type__": "cc.PhysicsCircleCollider",
@@ -269,7 +238,7 @@
       "y": 0
     },
     "_radius": 15,
-    "_id": "8cH/91l41KJLE7i+hviiCf"
+    "_id": "43ogalMoxAlrno0xD5Pam1"
   },
   {
     "__type__": "cc.PrefabInfo",

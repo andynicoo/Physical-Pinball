@@ -1,33 +1,28 @@
+//小球类
 var Config = require("./Config");
-
 var Ball = cc.Class({
     extends: cc.Component,
-
     properties: () => ({
         rigidBody: {
             type: cc.RigidBody,
             default: null
         },
-
-        isTouchedGround : {
+        isTouchedGround: {
             type: cc.Boolean,
             default: false
         }
     }),
-    
     //加载完成
-    onLoad () {
+    onLoad() {
         this.rigidBody = this.getComponent(cc.RigidBody);
         this.collider = this.getComponent(cc.Collider);
     },
-
-    //小球更新
-    update (dt) {
-        if(this.isTouchedGround){
+    //更新
+    update(dt) {
+        if (this.isTouchedGround) {
             this.rigidBody.active = false
             this.rigidBody.linearVelocity = cc.Vec2.ZERO;
-            //this.getComponent(cc.Collider).restitution = 0.2;
-
+            //记录路径点
             let pathPos = [];
             pathPos.push(this.node.position);
             pathPos.push(cc.v2(349, -498))
@@ -36,7 +31,7 @@ var Ball = cc.Class({
 
             this.node.runAction(cc.sequence(
                 cc.cardinalSplineTo(1, pathPos, 0.9),
-                cc.callFunc(function(){
+                cc.callFunc(function () {
                     this.rigidBody.active = true;
                     this.node.group = Config.groupBallInRecycle;
                     this.main.recycleBall();
@@ -44,29 +39,14 @@ var Ball = cc.Class({
             ))
             this.isTouchedGround = false;
         }
-        
-    },
 
+    },
     //小球发生碰撞时
-    onBeginContact(contact, selfCollider,otherCollider){
-        if(otherCollider.node.name == 'ground'){
+    onBeginContact(contact, selfCollider, otherCollider) {
+        if (otherCollider.node.name == 'ground') {
             this.isTouchedGround = true;
         }
-    },
-
-    onPreSolve(contact, selfCollider,otherCollider){
-        //console.log('onPreSolve')
-    },
-
-    onPostSolve(contact, selfCollider,otherCollider){
-        //console.log('onPostSolve')
-    },
-
-    onEndContact(contact, selfCollider,otherCollider){
-        //console.log('onEndContact')
-    },
-
-    
+    }
 });
 
 module.exports = Ball;

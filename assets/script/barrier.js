@@ -1,31 +1,26 @@
+//障碍物类
 var Barrier = cc.Class({
     extends: cc.Component,
-
-    properties:() => ({
+    properties: () => ({
         lbScore: {
             default: null,
             type: cc.Label
         },
-        isAddBuffBall:{
+        isAddBuffBall: {
             default: false,
             type: cc.Boolean
         }
     }),
-
-    //加载完成
-    onLoad () {
-        
-    },
-
-    start () {
-        if(this.lbScore){
+    //start
+    start() {
+        if (this.lbScore) {
             this.lbScore.node.rotation = -this.node.rotation
         }
         this.setScore(this.main.setBarrierScore());
-        this.node.color = cc.color(200,this.randomNum(0, 255),this.randomNum(0, 255),255)
+        this.node.color = cc.color(200, this.randomNum(0, 255), this.randomNum(0, 255), 255)
 
     },
-
+    //获取随机值
     randomNum(Min, Max) {
         var Range = Max - Min;
         var Rand = Math.random();
@@ -33,44 +28,28 @@ var Barrier = cc.Class({
         return num;
     },
 
-    //
-    setScore(score){
-        if(this.lbScore){
+    //设置分数
+    setScore(score) {
+        if (this.lbScore) {
             this.score = score;
             this.lbScore.string = this.score.toString();
         }
     },
-
-    onBeginContact(contact, selfCollider,otherCollider){
-        if(this.isAddBuffBall){
+    //发生碰撞时
+    onBeginContact(contact, selfCollider, otherCollider) {
+        if (this.isAddBuffBall) {
             this.main.addBall(this.node.position);
             this.main.removeBarrier(this);
-        }else{
+        } else {
             this.main.addScore();
-            if(this.score == 1){
+            if (this.score == 1) {
                 this.main.removeBarrier(this);
-            }else{
+            } else {
                 this.setScore(this.score - 1);
                 this.main.shake(this);
             }
-            
+
         }
-    },
-
-    onPreSolve(contact, selfCollider,otherCollider){
-        //console.log('onPreSolve')
-    },
-
-    onPostSolve(contact, selfCollider,otherCollider){
-        //console.log('onPostSolve')
-    },
-
-    onEndContact(contact, selfCollider,otherCollider){
-        //console.log('onEndContact')
-    },
-
-
-    // update (dt) {},
+    }
 });
-
 module.exports = Barrier;
