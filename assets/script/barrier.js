@@ -6,10 +6,7 @@ var Barrier = cc.Class({
             default: null,
             type: cc.Label
         },
-        isAddBuffBall: {
-            default: false,
-            type: cc.Boolean
-        }
+        isAddBuffBall: false,
     }),
     //start
     start() {

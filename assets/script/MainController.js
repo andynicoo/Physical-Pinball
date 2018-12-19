@@ -36,9 +36,9 @@ var MainController = cc.Class({
         this.node.on(cc.Node.EventType.TOUCH_START, this.onTouchStart, this);
         this.node.on(cc.Node.EventType.TOUCH_END, this.onTouchEnd, this);
         //显示游戏指引
+        this.init();
         this.guideShow();
         this.addBarriers();
-        this.init();
     },
     //初始化
     init(){
@@ -50,6 +50,7 @@ var MainController = cc.Class({
         this.gameOverMark.active = false;
         this.gameOverMark.zIndex = 10;
         this.guide.zIndex = 10;
+        this.guide.active = false;
         this.takeAim.main = this;
     },
     //触摸开始时
@@ -196,6 +197,9 @@ var MainController = cc.Class({
     //关闭引导动画
     guideHide() {
         this.guide.active = false;
+        let handMove = this.guide.getChildByName('handMove');
+        let animCtrl = handMove.getComponent(cc.Animation);
+        animCtrl.stop('handMove');
     },
     //开始游戏
     gameStart(){

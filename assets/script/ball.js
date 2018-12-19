@@ -7,10 +7,7 @@ var Ball = cc.Class({
             type: cc.RigidBody,
             default: null
         },
-        isTouchedGround: {
-            type: cc.Boolean,
-            default: false
-        }
+        isTouchedGround: false
     }),
     //加载完成
     onLoad() {
