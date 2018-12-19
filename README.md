@@ -15,7 +15,7 @@
 
 ### 效果截图
 
-![Physical-Pinball 物理弹球示例截图](Physical-Pinball/image/1.png)
+![Physical-Pinball 物理弹球示例截图](https://github.com/andynicoo/Physical-Pinball/raw/master/image/1.png)
         
       
 
