@@ -1,4 +1,4 @@
-# Physical-Pinball 物理弹球示例
+# Physical-Pinball 物理弹球示例 Cocos Creator 2.0.1 + Javascript 版
 
 物理弹球示例：[点击查看完整demo](https://www.super-cell.club/physical-pinball/)
 
@@ -15,6 +15,8 @@
 
 ### 效果截图
 
-
+![Physical-Pinball 物理弹球示例截图](Physical-Pinball/image/1.png)
+        
+      
 
 
