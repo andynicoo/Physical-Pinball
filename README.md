@@ -1,6 +1,6 @@
 # Physical-Pinball 物理弹球示例 Cocos Creator 2.0.1 + Javascript 版
 
-物理弹球示例：[点击查看完整demo](https://www.super-cell.club/physical-pinball/)
+物理弹球示例：[点击试玩游戏完整demo](https://www.super-cell.club/physical-pinball/)
 
 ### 功能点
 
@@ -16,6 +16,9 @@
 ### 效果截图
 
 ![Physical-Pinball 物理弹球示例截图](https://github.com/andynicoo/Physical-Pinball/raw/master/image/1.png)
+![Physical-Pinball 物理弹球示例截图](https://github.com/andynicoo/Physical-Pinball/raw/master/image/2.png)
+![Physical-Pinball 物理弹球示例截图](https://github.com/andynicoo/Physical-Pinball/raw/master/image/3.png)
+![Physical-Pinball 物理弹球示例截图](https://github.com/andynicoo/Physical-Pinball/raw/master/image/4.png)
         
       
 
