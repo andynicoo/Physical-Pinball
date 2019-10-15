@@ -8,12 +8,13 @@ cc.Class({
     },
     //加载完成
     onLoad() {
-        cc.director.preloadScene("game", this.onProgress.bind(this), this.onLoaded.bind(this));
+       
     },
     //start
     start() {
         this.progressBar = this.node.getChildByName("progressBar").getComponent(cc.ProgressBar);
         this.startButton.node.active = false;
+         cc.director.preloadScene("game", this.onProgress.bind(this), this.onLoaded.bind(this));
     },
     //预加载进度
     onProgress: function (completedCount, totalCount, item) {
